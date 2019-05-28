@@ -14,6 +14,7 @@ class TimerList extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleRemoveTimer = this.handleRemoveTimer.bind(this);
   }
 
   handleChange(e) {
@@ -29,15 +30,29 @@ class TimerList extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    let newTimers = this.state.timers.slice(); // returns a new array (not reference to array <- we don't want to directly mutate the state -> so make a copy)
+    let { timers, setHours, setMins, setSeconds } = this.state;
+    let newTimers = timers.slice(); // returns a new array (not reference to array <- we don't want to directly mutate the state -> so make a copy)
+    let timerId = Date.now();
     newTimers.push(
       <Timer
-        initialHours={this.state.setHours}
-        initialMinutes={this.state.setMins}
-        initialSeconds={this.state.setSeconds}
-        key={Date.now()} //unique key
+        initialHours={setHours}
+        initialMinutes={setMins}
+        initialSeconds={setSeconds}
+        onRemoveTimer={this.handleRemoveTimer}
+        key={timerId} //unique key
+        id={timerId}
       />
     );
+    this.setState({
+      timers: newTimers
+    });
+  }
+
+  handleRemoveTimer(id) {
+    console.log(this);
+    let { timers } = this.state;
+    let timerIndex = timers.findIndex(timer => timer.id === id);
+    let newTimers = timers.slice(timerIndex, timerIndex + 1); // slice(begin, end) (not including end)
     this.setState({
       timers: newTimers
     });

@@ -11,11 +11,17 @@ class Timer extends React.Component {
       timerOn: false
     };
 
-    this.handleClick = this.handleClick.bind(this);
+    this.handlePlayBtnClick = this.handlePlayBtnClick.bind(this);
+    this.handleRemoveBtnClick = this.handleRemoveBtnClick.bind(this);
     this.tick = this.tick.bind(this);
   }
 
-  handleClick(e) {
+  // clear any intervals before component is removed from dom tree
+  componentWillUnmount() {
+    clearInterval(this.timerId);
+  }
+
+  handlePlayBtnClick(e) {
     if (this.state.timerOn) {
       clearInterval(this.timerId);
     } else {
@@ -26,6 +32,10 @@ class Timer extends React.Component {
     this.setState({
       timerOn: !this.state.timerOn
     });
+  }
+
+  handleRemoveBtnClick() {
+    this.props.onRemoveTimer(this.props.id);
   }
 
   // Called by setInterval every second
@@ -60,21 +70,30 @@ class Timer extends React.Component {
   }
 
   render() {
+    // add 0 prefix
     let { hours, mins, seconds } = this.state;
-    let btnName = this.state.timerOn ? "pause" : "play";
+    hours = hours < 10 ? `0${hours}` : hours;
+    mins = mins < 10 ? `0${mins}` : mins;
+    seconds = seconds < 10 ? `0${seconds}` : seconds;
+    // determine button text
+    let playBtnName = this.state.timerOn ? "pause" : "play";
     let isDisabled =
       (hours === 0) & (mins === 0) & (seconds === 0) ? true : false;
+
     return (
       <div>
         <div className="time">
           {hours}:{mins}:{seconds}
         </div>
         <button
-          value={btnName}
-          onClick={this.handleClick}
+          name="playTimerBtn"
+          onClick={this.handlePlayBtnClick}
           disabled={isDisabled}
         >
-          {btnName}
+          {playBtnName}
+        </button>
+        <button name="removeTimerBtn" onClick={this.handleRemoveBtnClick}>
+          remove
         </button>
       </div>
     );
