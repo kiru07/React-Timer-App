@@ -41,7 +41,7 @@ class Timer extends React.Component {
   // Called by setInterval every second
   tick() {
     let { hours, mins, seconds } = this.state;
-    console.log(this);
+    // console.log(this);
     if (seconds > 0) {
       this.setState((state, props) => ({
         seconds: --state.seconds
@@ -82,6 +82,7 @@ class Timer extends React.Component {
 
     return (
       <div>
+        <div className="timerTitle">{this.props.timerTitle}</div>
         <div className="time">
           {hours}:{mins}:{seconds}
         </div>

@@ -9,7 +9,8 @@ class TimerList extends React.Component {
       timers: [],
       setHours: 0,
       setMins: 0,
-      setSeconds: 0
+      setSeconds: 0,
+      setTimerTitle: ""
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -30,7 +31,7 @@ class TimerList extends React.Component {
   handleSubmit(e) {
     e.preventDefault();
 
-    let { timers, setHours, setMins, setSeconds } = this.state;
+    let { timers, setHours, setMins, setSeconds, setTimerTitle } = this.state;
     let newTimers = timers.slice(); // returns a new array (not reference to array <- we don't want to directly mutate the state -> so make a copy)
     let timerId = Date.now();
     newTimers.push(
@@ -39,6 +40,7 @@ class TimerList extends React.Component {
         initialMinutes={setMins}
         initialSeconds={setSeconds}
         onRemoveTimer={this.handleRemoveTimer}
+        timerTitle={setTimerTitle}
         key={timerId} //unique key
         id={timerId}
       />
@@ -49,10 +51,14 @@ class TimerList extends React.Component {
   }
 
   handleRemoveTimer(id) {
-    console.log(this);
     let { timers } = this.state;
-    let timerIndex = timers.findIndex(timer => timer.id === id);
-    let newTimers = timers.slice(timerIndex, timerIndex + 1); // slice(begin, end) (not including end)
+    // make a copy of the array
+    let newTimers = [...timers];
+    // find index of timer element to be removed
+    let timerIndex = timers.findIndex(timer => timer.props.id === id);
+    // remove the timer from the array copy
+    newTimers.splice(timerIndex, 1); // remove element at timerIndex. (1 -> number of elements to remove from specified index)
+    // update state with new timers array.
     this.setState({
       timers: newTimers
     });
@@ -63,6 +69,15 @@ class TimerList extends React.Component {
       <div>
         <div className="createTimer" onSubmit={this.handleSubmit}>
           <form>
+            <label>
+              Timer Name:
+              <input
+                type="text"
+                name="setTimerTitle"
+                value={this.state.setTimerTitle}
+                onChange={this.handleChange}
+              />
+            </label>
             <label>
               Hours:
               <input
