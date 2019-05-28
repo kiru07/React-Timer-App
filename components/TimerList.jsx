@@ -82,51 +82,57 @@ class TimerList extends React.Component {
   render() {
     return (
       <div>
-        <div className="createTimerForm">
+        <div className="timer-form">
           <form onSubmit={this.handleSubmit}>
-            <label>
-              Timer Name:
-              <input
-                type="text"
-                name="setTimerTitle"
-                value={this.state.setTimerTitle}
-                onChange={this.handleChange}
-              />
-            </label>
-            <label>
-              Hours:
-              <input
-                type="number"
-                name="setHours"
-                min="0"
-                max="23"
-                value={this.state.setHours}
-                onChange={this.handleChange}
-              />
-            </label>
-            <label>
-              Minutes:
-              <input
-                type="number"
-                name="setMins"
-                min="0"
-                max="59"
-                value={this.state.setMins}
-                onChange={this.handleChange}
-              />
-            </label>
-            <label>
-              Seconds:
-              <input
-                type="number"
-                name="setSeconds"
-                min="0"
-                max="59"
-                value={this.state.setSeconds}
-                onChange={this.handleChange}
-              />
-            </label>
-            <button type="submit">Create Timer</button>
+            <div className="timer-name">
+              <label className="input-label">
+                Timer Name:
+                <input
+                  type="text"
+                  name="setTimerTitle"
+                  value={this.state.setTimerTitle}
+                  onChange={this.handleChange}
+                />
+              </label>
+            </div>
+            <div className="timer-time">
+              <label className="input-label">
+                Hours:
+                <input
+                  type="number"
+                  name="setHours"
+                  min="0"
+                  max="23"
+                  value={this.state.setHours}
+                  onChange={this.handleChange}
+                />
+              </label>
+              <label className="input-label">
+                Minutes:
+                <input
+                  type="number"
+                  name="setMins"
+                  min="0"
+                  max="59"
+                  value={this.state.setMins}
+                  onChange={this.handleChange}
+                />
+              </label>
+              <label className="input-label">
+                Seconds:
+                <input
+                  type="number"
+                  name="setSeconds"
+                  min="0"
+                  max="59"
+                  value={this.state.setSeconds}
+                  onChange={this.handleChange}
+                />
+              </label>
+            </div>
+            <button className="btn add" type="submit">
+              &#x2795;
+            </button>
           </form>
         </div>
         <div className="timers">{this.state.timers}</div>

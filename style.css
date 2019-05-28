@@ -1,0 +1,79 @@
+body {
+  background: #eee;
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.container {
+  width: 90vw;
+  background: #fff;
+  border-radius: 5px;
+  margin: 1em auto;
+}
+
+.container h1 {
+  margin: 0;
+  font-size: 2.5em;
+  text-align: center;
+  padding: 1em;
+}
+
+.timer-form {
+  width: 90%;
+  border-radius: 5px;
+  box-shadow: 1px 2px 5px #555;
+  margin: 0 auto;
+  position: relative; /*to position btn*/
+}
+
+.input-label {
+  padding: 5px;
+  font-size: 1.4em;
+}
+
+.input-label input {
+  border-radius: 5px;
+  border: 1.5px solid #90b9f7;
+  color: #124696;
+}
+
+.input-label input {
+  font-size: 1.5em;
+  padding: 6px;
+  margin: 0 5px;
+}
+
+.input-label input[type="number"] {
+  width: 70px;
+}
+.input-label input[type="text"] {
+  width: 200px;
+}
+
+.timer-name {
+  padding: 1em;
+  text-align: center;
+}
+
+.timer-time {
+  text-align: center;
+}
+
+.btn {
+  height: 75px;
+  width: 75px;
+  border-radius: 50%;
+  border: 0;
+  cursor: pointer;
+  box-shadow: 0px 0px 7px #333;
+  font-size: 1.2em;
+}
+
+.add {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: #41f16d;
+}
