@@ -16,11 +16,16 @@ class Timer extends React.Component {
     this.tick = this.tick.bind(this);
   }
 
-  // clear any intervals before component is removed from dom tree
+  /**
+   *  React Lifecycle Method: Clears any interval set for this Timer instance before it's removed from the DOM
+   */
   componentWillUnmount() {
     clearInterval(this.timerId);
   }
 
+  /**
+   *  Start/Pause the Timer
+   */
   handlePlayBtnClick(e) {
     if (this.state.timerOn) {
       clearInterval(this.timerId);
@@ -34,11 +39,16 @@ class Timer extends React.Component {
     });
   }
 
+  /**
+   * Delete the Timer
+   */
   handleRemoveBtnClick() {
     this.props.onRemoveTimer(this.props.id);
   }
 
-  // Called by setInterval every second
+  /**
+   *  Update time (called by setInterval() every second)
+   */
   tick() {
     let { hours, mins, seconds } = this.state;
     // console.log(this);

@@ -13,21 +13,28 @@ class TimerList extends React.Component {
       setTimerTitle: ""
     };
 
+    // Bind context of event handlers to this component
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleRemoveTimer = this.handleRemoveTimer.bind(this);
   }
 
+  /**
+   *  Handle user input
+   */
   handleChange(e) {
     const target = e.target;
     const value = target.value;
     const name = target.name;
 
     this.setState({
-      [name]: value
+      [name]: value // using 'computed property name' syntax to update state property corresponding to given input name
     });
   }
 
+  /**
+   *  Add new Timer
+   */
   handleSubmit(e) {
     e.preventDefault();
 
@@ -45,11 +52,19 @@ class TimerList extends React.Component {
         id={timerId}
       />
     );
+    // update timers array with new timer and reset input fields
     this.setState({
-      timers: newTimers
+      timers: newTimers,
+      setHours: 0,
+      setMins: 0,
+      setSeconds: 0,
+      setTimerTitle: ""
     });
   }
 
+  /**
+   *  Remove existing Timer
+   */
   handleRemoveTimer(id) {
     let { timers } = this.state;
     // make a copy of the array
@@ -67,8 +82,8 @@ class TimerList extends React.Component {
   render() {
     return (
       <div>
-        <div className="createTimer" onSubmit={this.handleSubmit}>
-          <form>
+        <div className="createTimerForm">
+          <form onSubmit={this.handleSubmit}>
             <label>
               Timer Name:
               <input
