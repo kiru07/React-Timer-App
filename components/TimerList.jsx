@@ -39,7 +39,7 @@ class TimerList extends React.Component {
     e.preventDefault();
 
     let { timers, setHours, setMins, setSeconds, setTimerTitle } = this.state;
-    let newTimers = timers.slice(); // returns a new array (not reference to array <- we don't want to directly mutate the state -> so make a copy)
+    let newTimers = timers.slice(); // creating a copy array for modification so that state's immutable property is maintained
     let timerId = Date.now();
     newTimers.push(
       <Timer

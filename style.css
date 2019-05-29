@@ -63,8 +63,6 @@ body {
 }
 
 .btn {
-  /* height: 75px;
-  width: 75px; */
   border-radius: 50%; /*to make circle (works only if height, width are equal)*/
   border: 0;
   cursor: pointer;
@@ -91,7 +89,6 @@ body {
 
 .timer {
   background: #eee;
-  /* border: 2px solid #90b9f7; */
   border-radius: 5px;
   box-shadow: 1px 2px 5px #7e7e7e;
   margin: 10px auto;
@@ -152,16 +149,12 @@ body {
 .timer-title {
   font-size: 2em;
   color: #000438;
-  /* text-align: center;
-  flex-basis: 210px; */
 }
 
 .time-text {
   font-size: 4em;
   color: #000438;
   text-shadow: 1px 1px 1px #333;
-  /* text-align: center;
-  flex-basis: 230px; */
 }
 
 .start-btn,

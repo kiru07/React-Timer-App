@@ -11,7 +11,7 @@ class Timer extends React.Component {
       timerOn: false,
       reset: false
     };
-    // Determinc animation duration in seconds
+    // Determine animation duration in seconds (won't change so we assign it as an instance variable, instead of setting it in the state)
     this.timerBarAnimationStyle = {
       animationDuration: `${props.initialHours * 60 * 60 +
         props.initialMinutes * 60 +
@@ -32,16 +32,18 @@ class Timer extends React.Component {
   }
 
   /**
-   *  Start/Pause the Timer
+   *  Start/Pause the Timer (Toggle)
    */
   handlePlayBtnClick(e) {
     if (this.state.timerOn) {
+      // Currently timer is on so pause it.
       clearInterval(this.timerId);
     } else {
+      // Currently timer is paused/off so start it.
       // assign interval's id to a property of this component's instance (not needed to put in state, since it won't be updated)
       this.timerId = setInterval(this.tick, 1000);
     }
-    // update btn state
+    // update state
     this.setState({
       timerOn: !this.state.timerOn,
       reset: false
@@ -52,7 +54,7 @@ class Timer extends React.Component {
    * Delete the Timer
    */
   handleRemoveBtnClick() {
-    this.props.onRemoveTimer(this.props.id);
+    this.props.onRemoveTimer(this.props.id); // calling handler in parent component
   }
 
   /**
@@ -72,7 +74,7 @@ class Timer extends React.Component {
   }
 
   /**
-   *  Update time (called by setInterval() every second)
+   *  Updates time (called by setInterval() every second)
    */
   tick() {
     let { hours, mins, seconds } = this.state;
@@ -125,7 +127,6 @@ class Timer extends React.Component {
       ? timerBarStyle + " reset-animation"
       : timerBarStyle;
 
-    console.log(this);
     return (
       <div className="timer">
         <div style={this.timerBarAnimationStyle} className={timerBarStyle} />
