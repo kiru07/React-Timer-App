@@ -43,9 +43,9 @@ class TimerList extends React.Component {
     let timerId = Date.now();
     newTimers.push(
       <Timer
-        initialHours={setHours}
-        initialMinutes={setMins}
-        initialSeconds={setSeconds}
+        initialHours={parseInt(setHours, 10)}
+        initialMinutes={parseInt(setMins, 10)}
+        initialSeconds={parseInt(setSeconds, 10)}
         onRemoveTimer={this.handleRemoveTimer}
         timerTitle={setTimerTitle}
         key={timerId} //unique key

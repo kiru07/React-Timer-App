@@ -16,6 +16,12 @@ class Timer extends React.Component {
         props.initialMinutes * 60 +
         props.initialSeconds}s`
     };
+    console.log(props.initialHours, props.initialMinutes, props.initialSeconds);
+    console.log(
+      props.initialHours * 60 * 60 +
+        props.initialMinutes * 60 +
+        props.initialSeconds
+    );
 
     this.handlePlayBtnClick = this.handlePlayBtnClick.bind(this);
     this.handleRemoveBtnClick = this.handleRemoveBtnClick.bind(this);
@@ -86,21 +92,24 @@ class Timer extends React.Component {
   }
 
   render() {
-    // add 0 prefix
     let { hours, mins, seconds } = this.state;
+    // determine if start/stop button should be disabled
+    let isDisabled = hours === 0 && mins === 0 && seconds === 0 ? true : false;
+    // add 0 prefix for single digits
     hours = hours < 10 ? `0${hours}` : hours;
     mins = mins < 10 ? `0${mins}` : mins;
     seconds = seconds < 10 ? `0${seconds}` : seconds;
-    // determine animation duration
-    // let animationDurationStyle = { animationDuration: timerInSeconds };
-    // determine button text
-    // let playBtnName = this.state.timerOn ? "pause" : "play";
+
+    // Conditionally render button icon
     let playBtnName = this.state.timerOn ? "⏸" : "▶"; //using emojis for symbols
+
     let timerBarStyle = "timer-bar";
     timerBarStyle = this.state.timerOn
       ? timerBarStyle + " play-animation"
       : timerBarStyle + " pause-animation";
-    let isDisabled = hours == 0 && mins == 0 && seconds == 0 ? true : false;
+
+    console.log(hours, mins, seconds);
+    console.log(isDisabled);
 
     return (
       <div className="timer">
@@ -113,6 +122,7 @@ class Timer extends React.Component {
           <button
             className="btn start-btn"
             name="playTimerBtn"
+            title="Start/Stop Timer"
             onClick={this.handlePlayBtnClick}
             disabled={isDisabled}
           >
