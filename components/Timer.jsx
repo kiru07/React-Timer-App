@@ -11,11 +11,16 @@ class Timer extends React.Component {
       timerOn: false
     };
 
-    this.animationDurationStyle = {
+    let colorList = ["#ff8787", "#d1ff87", "#87c5f", "#c987ff", "#ff87d1"];
+    let timerBarColor = colorList[Math.floor(Math.random() * colorList.length)];
+    console.log(timerBarColor);
+    this.timerBarAnimationStyle = {
       animationDuration: `${props.initialHours * 60 * 60 +
         props.initialMinutes * 60 +
-        props.initialSeconds}s`
+        props.initialSeconds}s`,
+      backgroundColor: timerBarColor
     };
+    console.log(this.timerBarAnimationStyle);
 
     this.handlePlayBtnClick = this.handlePlayBtnClick.bind(this);
     this.handleRemoveBtnClick = this.handleRemoveBtnClick.bind(this);
@@ -105,7 +110,7 @@ class Timer extends React.Component {
 
     return (
       <div className="timer">
-        <div className={timerBarStyle} style={this.animationDurationStyle} />
+        <div style={{ backgroundColor: "red" }} className={timerBarStyle} />
         <div className="timer-content">
           <div className="timer-title">{this.props.timerTitle}</div>
           <div className="time-text">
