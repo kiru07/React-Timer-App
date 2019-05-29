@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "parcel index.html"
+    "start": "parcel index.html",
+    "build": "parcel build index.html --out-dir production"
   },
   "keywords": [
     "react",
@@ -14,8 +15,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "parcel-bundler": "^1.12.3",
-    "prop-types": "^15.7.2"
+    "parcel-bundler": "^1.12.3"
   },
   "dependencies": {
     "react": "^16.8.6",
