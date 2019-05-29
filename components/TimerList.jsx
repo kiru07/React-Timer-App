@@ -93,6 +93,7 @@ class TimerList extends React.Component {
                   maxLength="16"
                   value={this.state.setTimerTitle}
                   onChange={this.handleChange}
+                  required
                 />
               </label>
             </div>
