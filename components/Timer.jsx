@@ -94,13 +94,14 @@ class Timer extends React.Component {
     // determine animation duration
     // let animationDurationStyle = { animationDuration: timerInSeconds };
     // determine button text
-    let playBtnName = this.state.timerOn ? "pause" : "play";
+    // let playBtnName = this.state.timerOn ? "pause" : "play";
+    let playBtnName = this.state.timerOn ? "⏸" : "▶"; //using emojis for symbols
     let timerBarStyle = "timer-bar";
     timerBarStyle = this.state.timerOn
       ? timerBarStyle + " play-animation"
       : timerBarStyle + " pause-animation";
     let isDisabled = hours == 0 && mins == 0 && seconds == 0 ? true : false;
-    console.log(isDisabled);
+
     return (
       <div className="timer">
         <div style={this.timerBarAnimationStyle} className={timerBarStyle} />
@@ -121,8 +122,9 @@ class Timer extends React.Component {
             className="btn remove-btn"
             name="removeTimerBtn"
             onClick={this.handleRemoveBtnClick}
+            title="Remove Timer"
           >
-            remove
+            &#x274C;
           </button>
         </div>
       </div>

@@ -132,7 +132,7 @@ class TimerList extends React.Component {
                 />
               </label>
             </div>
-            <button className="btn add-btn" type="submit">
+            <button className="btn add-btn" type="submit" title="Add Timer">
               &#x2795;
             </button>
           </form>
