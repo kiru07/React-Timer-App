@@ -92,25 +92,27 @@ class Timer extends React.Component {
 
     return (
       <div className="timer">
-        <div className="timerTitle">{this.props.timerTitle}</div>
-        <div className="time">
-          {hours}:{mins}:{seconds}
+        <div className="timer-bar">
+          <div className="timer-title">{this.props.timerTitle}</div>
+          <div className="time-text">
+            {hours}:{mins}:{seconds}
+          </div>
+          <button
+            className="btn start-btn"
+            name="playTimerBtn"
+            onClick={this.handlePlayBtnClick}
+            disabled={isDisabled}
+          >
+            {playBtnName}
+          </button>
+          <button
+            className="btn remove-btn"
+            name="removeTimerBtn"
+            onClick={this.handleRemoveBtnClick}
+          >
+            remove
+          </button>
         </div>
-        <button
-          className="btn play"
-          name="playTimerBtn"
-          onClick={this.handlePlayBtnClick}
-          disabled={isDisabled}
-        >
-          {playBtnName}
-        </button>
-        <button
-          className="btn remove"
-          name="removeTimerBtn"
-          onClick={this.handleRemoveBtnClick}
-        >
-          remove
-        </button>
       </div>
     );
   }

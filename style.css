@@ -24,7 +24,8 @@ body {
   width: 90%;
   border-radius: 5px;
   box-shadow: 1px 2px 5px #555;
-  margin: 0 auto;
+  margin: 20px auto;
+  padding: 1em;
   position: relative; /*to position btn*/
 }
 
@@ -52,12 +53,9 @@ body {
   width: 200px;
 }
 
-.timer-name {
-  padding: 1em;
-  text-align: center;
-}
-
+.timer-name,
 .timer-time {
+  padding: 1em;
   text-align: center;
 }
 
@@ -71,9 +69,94 @@ body {
   font-size: 1.2em;
 }
 
-.add {
+.add-btn {
   position: absolute;
   top: 15px;
   right: 15px;
   background: #41f16d;
+}
+
+.timers {
+  width: 90%;
+  border-radius: 5px;
+  box-shadow: 1px 2px 5px #555;
+  margin: 0 auto;
+  padding: 1em;
+}
+
+.timer {
+  background: #eee;
+  /* border: 2px solid #90b9f7; */
+  border-radius: 5px;
+  box-shadow: 1px 2px 5px #7e7e7e;
+  margin: 10px auto;
+  width: 90%;
+  height: 100px;
+  position: relative;
+}
+
+.timer-bar {
+  width: 100%;
+  height: 100%;
+  background: #ff8787;
+  transform-origin: left; /* move origin of element to left edge, so bar grows left to right. (Default is center, so bar grows on both sides)*/
+  animation-name: countdown;
+  animation-duration: 10s;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+/* @keyframes countdown {
+  from {
+    transform: scaleX(100%);
+  }
+
+  to {
+    transform: scaleX(0);
+  }
+} */
+
+.play {
+  animation-play-state: running;
+}
+
+.pause {
+  animation-play-state: paused;
+}
+
+.timer-title,
+.time-text,
+.start-btn,
+.remove-btn {
+  position: absolute;
+}
+
+.timer-title {
+  top: 10px;
+  left: 50%;
+  font-size: 2em;
+}
+
+.time-text {
+  font-size: 4em;
+  color: #222;
+  text-shadow: 1px 1px 1px #333;
+  top: 25px;
+  left: 10px;
+}
+
+.start-btn,
+.remove-btn {
+  height: 50px;
+  width: 50px;
+}
+
+.start-btn {
+  top: 10px;
+  right: 10px;
+}
+
+.remove-btn {
+  bottom: 10px;
+  right: 10px;
 }
