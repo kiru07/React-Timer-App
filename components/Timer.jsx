@@ -87,32 +87,35 @@ class Timer extends React.Component {
     seconds = seconds < 10 ? `0${seconds}` : seconds;
     // determine button text
     let playBtnName = this.state.timerOn ? "pause" : "play";
+    let timerBarStyle = "timer-bar";
+    timerBarStyle = this.state.timerOn
+      ? timerBarStyle + " play-animation"
+      : timerBarStyle + " pause-animation";
     let isDisabled =
       (hours === 0) & (mins === 0) & (seconds === 0) ? true : false;
 
     return (
       <div className="timer">
-        <div className="timer-bar">
-          <div className="timer-title">{this.props.timerTitle}</div>
-          <div className="time-text">
-            {hours}:{mins}:{seconds}
-          </div>
-          <button
-            className="btn start-btn"
-            name="playTimerBtn"
-            onClick={this.handlePlayBtnClick}
-            disabled={isDisabled}
-          >
-            {playBtnName}
-          </button>
-          <button
-            className="btn remove-btn"
-            name="removeTimerBtn"
-            onClick={this.handleRemoveBtnClick}
-          >
-            remove
-          </button>
+        <div className={timerBarStyle} />
+        <div className="timer-title">{this.props.timerTitle}</div>
+        <div className="time-text">
+          {hours}:{mins}:{seconds}
         </div>
+        <button
+          className="btn start-btn"
+          name="playTimerBtn"
+          onClick={this.handlePlayBtnClick}
+          disabled={isDisabled}
+        >
+          {playBtnName}
+        </button>
+        <button
+          className="btn remove-btn"
+          name="removeTimerBtn"
+          onClick={this.handleRemoveBtnClick}
+        >
+          remove
+        </button>
       </div>
     );
   }

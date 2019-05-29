@@ -90,6 +90,7 @@ class TimerList extends React.Component {
                 <input
                   type="text"
                   name="setTimerTitle"
+                  maxLength="16"
                   value={this.state.setTimerTitle}
                   onChange={this.handleChange}
                 />
