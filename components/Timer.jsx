@@ -11,6 +11,12 @@ class Timer extends React.Component {
       timerOn: false
     };
 
+    this.animationDurationStyle = {
+      animationDuration: `${props.initialHours * 60 * 60 +
+        props.initialMinutes * 60 +
+        props.initialSeconds}s`
+    };
+
     this.handlePlayBtnClick = this.handlePlayBtnClick.bind(this);
     this.handleRemoveBtnClick = this.handleRemoveBtnClick.bind(this);
     this.tick = this.tick.bind(this);
@@ -85,6 +91,9 @@ class Timer extends React.Component {
     hours = hours < 10 ? `0${hours}` : hours;
     mins = mins < 10 ? `0${mins}` : mins;
     seconds = seconds < 10 ? `0${seconds}` : seconds;
+    // determine animation duration
+
+    // let animationDurationStyle = { animationDuration: timerInSeconds };
     // determine button text
     let playBtnName = this.state.timerOn ? "pause" : "play";
     let timerBarStyle = "timer-bar";
@@ -96,26 +105,28 @@ class Timer extends React.Component {
 
     return (
       <div className="timer">
-        <div className={timerBarStyle} />
-        <div className="timer-title">{this.props.timerTitle}</div>
-        <div className="time-text">
-          {hours}:{mins}:{seconds}
+        <div className={timerBarStyle} style={this.animationDurationStyle} />
+        <div className="timer-content">
+          <div className="timer-title">{this.props.timerTitle}</div>
+          <div className="time-text">
+            {hours}:{mins}:{seconds}
+          </div>
+          <button
+            className="btn start-btn"
+            name="playTimerBtn"
+            onClick={this.handlePlayBtnClick}
+            disabled={isDisabled}
+          >
+            {playBtnName}
+          </button>
+          <button
+            className="btn remove-btn"
+            name="removeTimerBtn"
+            onClick={this.handleRemoveBtnClick}
+          >
+            remove
+          </button>
         </div>
-        <button
-          className="btn start-btn"
-          name="playTimerBtn"
-          onClick={this.handlePlayBtnClick}
-          disabled={isDisabled}
-        >
-          {playBtnName}
-        </button>
-        <button
-          className="btn remove-btn"
-          name="removeTimerBtn"
-          onClick={this.handleRemoveBtnClick}
-        >
-          remove
-        </button>
       </div>
     );
   }

@@ -101,7 +101,7 @@ body {
   background: #ff8787;
   transform-origin: left; /* move origin of element to left edge, so bar grows left to right. (Default is center, so bar grows on both sides)*/
   animation-name: countdown;
-  animation-duration: 10s;
+  /* animation-duration: 10s; */
   animation-timing-function: linear;
   animation-fill-mode: forwards;
 }
@@ -127,11 +127,12 @@ body {
 .timer-content {
   height: 100%;
   width: 100%;
-  /* display: flex;
+  display: flex;
   flex-wrap: wrap;
   align-items: center;
-  justify-content: space-around; */
+  justify-content: space-around;
   position: absolute;
+  top: 0;
   right: 0;
 }
 
@@ -139,9 +140,6 @@ body {
   font-size: 2em;
   /* text-align: center;
   flex-basis: 210px; */
-  position: absolute;
-  top: 20px;
-  left: 10px;
 }
 
 .time-text {
@@ -150,24 +148,10 @@ body {
   text-shadow: 1px 1px 1px #333;
   /* text-align: center;
   flex-basis: 230px; */
-  position: absolute;
-  top: 20px;
-  left: 36%;
 }
 
 .start-btn,
 .remove-btn {
   height: 50px;
   width: 50px;
-  position: absolute;
-}
-
-.start-btn {
-  top: 20px;
-  right: 100px;
-}
-
-.remove-btn {
-  top: 20px;
-  right: 40px;
 }
