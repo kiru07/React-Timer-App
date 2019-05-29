@@ -111,6 +111,22 @@ body {
   animation-fill-mode: forwards;
 }
 
+.play-animation {
+  animation-play-state: running;
+}
+
+.pause-animation {
+  animation-play-state: paused;
+}
+
+.reset-animation {
+  /*Setting animation property to none stops the animation (clears all settings). 
+    In React we dynamically assign .timer-bar to elements (when play/pause is clicked), this resets the animation properties
+  */
+  animation: none;
+}
+
+/* animation */
 @keyframes countdown {
   from {
     transform: scaleX(100%);
@@ -119,14 +135,6 @@ body {
   to {
     transform: scaleX(0);
   }
-}
-
-.play-animation {
-  animation-play-state: running;
-}
-
-.pause-animation {
-  animation-play-state: paused;
 }
 
 .timer-content {
@@ -157,7 +165,8 @@ body {
 }
 
 .start-btn,
-.remove-btn {
+.remove-btn,
+.reset-btn {
   background: #babffc;
   height: 50px;
   width: 50px;

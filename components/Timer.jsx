@@ -8,23 +8,19 @@ class Timer extends React.Component {
       hours: props.initialHours,
       mins: props.initialMinutes,
       seconds: props.initialSeconds,
-      timerOn: false
+      timerOn: false,
+      reset: false
     };
-
+    // Determinc animation duration in seconds
     this.timerBarAnimationStyle = {
       animationDuration: `${props.initialHours * 60 * 60 +
         props.initialMinutes * 60 +
         props.initialSeconds}s`
     };
-    console.log(props.initialHours, props.initialMinutes, props.initialSeconds);
-    console.log(
-      props.initialHours * 60 * 60 +
-        props.initialMinutes * 60 +
-        props.initialSeconds
-    );
-
+    // Bind context of event handlers and methods
     this.handlePlayBtnClick = this.handlePlayBtnClick.bind(this);
     this.handleRemoveBtnClick = this.handleRemoveBtnClick.bind(this);
+    this.handleResetBtnClick = this.handleResetBtnClick.bind(this);
     this.tick = this.tick.bind(this);
   }
 
@@ -47,7 +43,8 @@ class Timer extends React.Component {
     }
     // update btn state
     this.setState({
-      timerOn: !this.state.timerOn
+      timerOn: !this.state.timerOn,
+      reset: false
     });
   }
 
@@ -59,11 +56,27 @@ class Timer extends React.Component {
   }
 
   /**
+   * Reset the Timer
+   */
+  handleResetBtnClick() {
+    // Stop the timer
+    clearInterval(this.timerId);
+    // Update state to initially set time
+    this.setState({
+      hours: this.props.initialHours,
+      mins: this.props.initialMinutes,
+      seconds: this.props.initialSeconds,
+      timerOn: false,
+      reset: true
+    });
+  }
+
+  /**
    *  Update time (called by setInterval() every second)
    */
   tick() {
     let { hours, mins, seconds } = this.state;
-    // console.log(this);
+
     if (seconds > 0) {
       this.setState((state, props) => ({
         seconds: --state.seconds
@@ -102,15 +115,17 @@ class Timer extends React.Component {
 
     // Conditionally render button icon
     let playBtnName = this.state.timerOn ? "⏸" : "▶"; //using emojis for symbols
-
+    // Start/Stop animation (adds css animation property to component)
     let timerBarStyle = "timer-bar";
     timerBarStyle = this.state.timerOn
       ? timerBarStyle + " play-animation"
       : timerBarStyle + " pause-animation";
+    // Determine if animation needs to be reset
+    timerBarStyle = this.state.reset
+      ? timerBarStyle + " reset-animation"
+      : timerBarStyle;
 
-    console.log(hours, mins, seconds);
-    console.log(isDisabled);
-
+    console.log(this);
     return (
       <div className="timer">
         <div style={this.timerBarAnimationStyle} className={timerBarStyle} />
@@ -127,6 +142,14 @@ class Timer extends React.Component {
             disabled={isDisabled}
           >
             {playBtnName}
+          </button>
+          <button
+            className="btn reset-btn"
+            name="resetTimerBtn"
+            onClick={this.handleResetBtnClick}
+            title="Reset Timer"
+          >
+            &#x1F501;
           </button>
           <button
             className="btn remove-btn"
